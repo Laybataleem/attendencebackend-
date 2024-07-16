@@ -24,16 +24,16 @@ const markattendence = async (req, res ,next) => {
   }
 }
 
-const getAllannouncement = async (req, res,next) => {
+const getAllAttendence = async (req, res,next) => {
   try {
-    const  announcement = await  Studentattendence.find();
+    const  attendenceRecords = await  Studentattendence.find().populate("student","name regNo grade");
     res.status(200).json({
       success: true,
-      announcement,
+      attendenceRecords,
     });
   } catch (error) {
     next(error);
   }
 };// ab ap kare continue okay
 
-module.exports = { createannouncement, getAllannouncement };
+module.exports = {markattendence , getAllAttendence };
